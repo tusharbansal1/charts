@@ -1,25 +1,59 @@
-import logo from './logo.svg';
 import './App.css';
+import Chart from 'react-apexcharts'
+import React from 'react';
+import ReactApexChart from 'react-apexcharts';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      series: [{
+        name: "Desktop",
+        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+      }],
+      options: {
+        chart: {
+          height: 350,
+          width:10,
+          type: 'line',
+          zoom: {
+            enabled: false
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: "straight"
+        },
+        title: {
+          text: "Product trends by month",
+          align: 'left'
+        },
+        grid: {
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
+          },
+        },
+        xaxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+        }
+      }
+    }
+  }
+  render() {
+    return (
+      
+
+<div id="chart">
+<ReactApexChart options={this.state.options} series={this.state.series} type="line" height={350} />
+</div>
+
+
+    );
+  }
 }
 
-export default App;
+export default App
